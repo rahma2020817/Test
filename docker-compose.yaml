@@ -1,0 +1,28 @@
+﻿version: "3.9"
+services:
+  baseDemo:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Brandee2021.."
+      SA_USER: "rahma"
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./data:/var/opt/mssql/data
+    networks:
+      - domo-docker-network
+
+  api:
+    build: .
+    ports:
+      - "7224:80"
+      - "5224:443"
+    networks:
+      - domo-docker-network
+      
+networks:
+  domo-docker-network:
+volumes:
+  dbBase:
+  
